@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Profile</title>
+</head>
+
+<body>
+<!-- The below double curly bracers is unique to Flask, which uses jinja2 as a template language so we can
+use jinja2 when we are rendering templates in Flask
+So we need to pass in the variable -->
+ {{user.screen_name}}
+<form action="{{ url_for('search') }}">
+    <label for="q">Twitter Search</label>
+    <!-- the name="q" is the name of the query string parameter sent with the POST verb" -->
+    <input type="text" name="q" id="q" placeholder="Your twitter search">
+    <button type="submit">Search</button>
+</form>
+</body>
+
+</html>

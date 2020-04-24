@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- below two lines grant us Bootstrap CSS and its classes etc -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <!-- below is Flask specific -->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <title>Search Results</title>
+</head>
+<body>
+<!-- below is essentially a for loop over "content"-->
+    <div class="container">
+        <ul class="list-group" id="tweets">
+            <!-- css_class is just a variable we are creating -->
+            {% set css_class = 'list-group-item-info' %} <!-- bootstrap class that color elements blue -->
+
+            {% for element in content %}
+                {% if element['label'] == 'neg' %}
+                    {% set css_class = 'list-group-item-danger' %} <!-- bootstrap class that color elements red -->
+                {% elif element['label'] == 'pos' %}
+                    {% set css_class = 'list-group-item-success' %} <!-- bootstrap class that color elements green -->
+                {% endif %}
+              <li class="list-group-item {{ css_class }}">{{element['tweet']}}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
